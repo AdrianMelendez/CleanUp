@@ -12,7 +12,7 @@ if __name__ == '__main__':  #No está siendo importado el código
 
     observer = Observer()
     observer.schedule(event_handler, f'{watch_path}', recursive=True)
-    observer.start()
+    observer.start() #Observer watching for modifications
     
     try:
         while True:

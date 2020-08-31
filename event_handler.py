@@ -43,7 +43,7 @@ class EventHandler(FileSystemEventHandler):
             if element.is_file():
                 if element.suffix.lower() in extension_paths:
                     destination_path = self.destination_root / extension_paths[element.suffix.lower()]
-                else:
+                else: #not known file types
                     destination_path = self.destination_root / 'other/not known'
                 destination_path = add_date_to_path(path=destination_path)
                 destination_path = rename_file(source=element, destination_path=destination_path)

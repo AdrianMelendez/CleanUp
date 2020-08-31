@@ -1,3 +1,4 @@
+#Most common extensions
 extension_paths = {
         # No name
         'noname':  'other/uncategorized',
