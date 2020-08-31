@@ -1,4 +1,6 @@
 import shutil
+import os
+import time
 from datetime import date
 from pathlib import Path
 
@@ -7,10 +9,10 @@ from watchdog.events import FileSystemEventHandler
 from extensions import extension_paths
 
 
-def add_date_to_path(path : Path):
+def add_date_to_path(path : Path, element : Path):
     #Adds date to the destination path and creates it if not.
-
-    dated_path = path / f'{date.today().year}' / f'{date.today().month:02d}'
+    mod_date = time.localtime(os.path.getmtime(element.resolve()))
+    dated_path = path / ('{:4d}'.format(mod_date.tm_year)) / ('{:02d}'.format(mod_date.tm_mon))
     dated_path.mkdir(parents=True, exist_ok=True)
     return dated_path
 
@@ -45,6 +47,6 @@ class EventHandler(FileSystemEventHandler):
                     destination_path = self.destination_root / extension_paths[element.suffix.lower()]
                 else: #not known file types
                     destination_path = self.destination_root / 'other/not known'
-                destination_path = add_date_to_path(path=destination_path)
+                destination_path = add_date_to_path(path=destination_path, element = element)
                 destination_path = rename_file(source=element, destination_path=destination_path)
                 shutil.move(src=element, dst=destination_path)
