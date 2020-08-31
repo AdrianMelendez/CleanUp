@@ -1,4 +1,4 @@
 # Organizing your Downloads folder
-## Using an Observer
-## Getting the right destination path
-## Moving the file with the <shutil> lib
+## 1. Using an Observer
+## 2. Getting the right destination path
+## 3. Moving the file with the <shutil> lib
