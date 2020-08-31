@@ -1,6 +1,7 @@
 import shutil
 import os
 import time
+from time import sleep
 from datetime import date
 from pathlib import Path
 
@@ -41,6 +42,7 @@ class EventHandler(FileSystemEventHandler):
 
 
     def on_modified(self, event):
+        sleep(60)
         for element in self.watch_path.iterdir():
             if element.is_file():
                 if element.suffix.lower() in extension_paths:
